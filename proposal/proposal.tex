@@ -21,7 +21,7 @@
 
 Influence of Transfer Learning on Performance}
 % TODO: add your real name and real link
-\author{Can Kocak und Paul Steinbrink (rl\_ckps) \\ \url{https://github.com/cako2025/rl_ckps_final_project/}}
+\author{Can Kocak and Paul Steinbrink (rl\_ckps) \\ \url{https://github.com/cako2025/rl_ckps_final_project/}}
 
 \begin{document}
 
@@ -34,7 +34,6 @@ This motivation leads us to the hypothesis:
     \item \textbf{H0:} Transfer learning (training an agent after a previously trained agent) does not significantly affect the average win rate of the second agent compared to solo training without transfer.
     \item \textbf{H1:} Transfer learning leads to a significant change in the average win rate of the second agent compared to solo training.
 \end{itemize}
-
 
 \section{Related Topics}
 RL-Algorithm: Q-Learning (off-policy) and SARSA (on-policy).\\
@@ -80,18 +79,21 @@ We want to know roughly what you are planning to show in terms of experiments.
 ENV: Blackjack-v1 (Gymnasium - Toy Text)\\
 Metrics: average win rate of the agent over multiple episodes, learning speed and convergence behavior.
 
-\paragraph{Experimental Scope} How many experiments are you running? Include seeds, hyperparameter optimization, different environments, ablations, etc. here.
+\paragraph{Experimental Scope}
+~\\
+How many experiments are you running? Include seeds, hyperparameter optimization, different environments, ablations, etc. here.
 
 \paragraph{Estimated Computational Load}
+~\\
 Training times vary by algorithm but are expected to be moderate due to the simplicity of the Blackjack environment. Each training run should take between several minutes to an hour on a standard CPU/GPU. Experiments will be automated via scripts and run on a local machine. Overall, the project is designed to be computationally feasible within a few days to a week.
 
 \section{Timeline}
-Please tell us how long you think it will take to accomplish all parts of your project. This includes:
+Estimated timeline for our project includes:
 \begin{itemize}
-    \item Research: 1 week — Literature review on transfer learning and RL algorithms in Blackjack.
-    \item Implementation: 1-2 weeks — Implement training pipelines for the RL algorithms and transfer learning setups.
-    \item Experiments: 1-2 weeks — Run experiments across different algorithms, seeds, and settings.
-    \item Analysis: 1 week — Statistical evaluation of results, hypothesis testing, and interpretation.
-    \item Reporting: 1 week — Writing the final report, preparing visualizations, and presentation.
+    \item Research: 2 days — Literature review on transfer learning and RL algorithms in Blackjack.
+    \item Implementation: 2 days — Implement training pipelines for the RL algorithms and transfer learning setups.
+    \item Experiments: 4 days — Run experiments across different algorithms, seeds, and settings.
+    \item Analysis: 2 days — Statistical evaluation of results, hypothesis testing, and interpretation.
+    \item Reporting: 1.5 days — Writing the final report, preparing visualizations, and presentation.
 \end{itemize}
 \end{document}
