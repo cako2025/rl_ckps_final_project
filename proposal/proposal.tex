@@ -15,62 +15,85 @@
 \usepackage{algpseudocode}
 
 % Add your own as neccessary
+\usepackage{amsmath}
 
 \title{{\large RL Project Proposal:}\\
 
-How successful are different RL-Algorithm on the blackjack-env and how does the exploration-strategy affect the result.}
+Influence of Transfer Learning on Performance}
 % TODO: add your real name and real link
-\author{rl\_ckps \\ \url{https://github.com/cako2025/rl_ckps_final_project/}}
+\author{Can Kocak and Paul Steinbrink (rl\_ckps) \\ \url{https://github.com/cako2025/rl_ckps_final_project/}}
 
 \begin{document}
 
 \maketitle
 \section{Motivation}
-Understanding how various RL algorithms perform in this setting is crucial for identifying their strengths and limitations, especially in environments with stochastic outcomes and partial observability. The choice of exploration strategy plays a significant role in how quickly and effectively an agent learns optimal policies, making it an important factor to investigate. This project aims to provide insights into both algorithm selection and the impact of exploration on learning performance in Blackjack, contributing to a deeper understanding of practical reinforcement learning challenges.
+Transfer learning has shown promise in accelerating learning by leveraging prior knowledge, but its impact on the performance of reinforcement learning agents in stochastic environments like Blackjack remains unclear. Understanding whether transfer learning improves or changes the agent's win rate is essential for designing effective training strategies.
+
+This motivation leads us to the hypothesis:
+\begin{itemize}
+    \item \textbf{H0:} Transfer learning (training an agent after a previously trained agent) does not significantly affect the average win rate of the second agent compared to solo training without transfer.
+    \item \textbf{H1:} Transfer learning leads to a significant change in the average win rate of the second agent compared to solo training.
+\end{itemize}
 
 \section{Related Topics}
-RL-Algorithm: Q-Learning, Monte Carlo, DQN, PPO\\
-exploration-strategy: epsilon-greedy, etc.
+RL-Algorithm: Q-Learning (off-policy) and SARSA (on-policy).\\
+exploration-strategy: epsilon-greedy and softmax.\\
+topic: transfer-learning
 
 \section{Idea}
-Briefly describe your idea. We do not necessarily need details at this stage, but a rough notion of what you want to accomplish and why.
+We first train a policy $\pi_{\text{pre}}$ using a standard reinforcement learning algorithm. 
+This policy is then transferred to a second agent $\pi_{\text{transfer}}$, while a separate agent 
+$\pi_{\text{scratch}}$ is trained from scratch using the same algorithm and environment. 
+We then compare the expected performance of both agents to determine the effect of transfer learning.
+
+The hypothesis is formalized as:
+\begin{equation}
+    \label{eq:hypothesis}
+    \pi \in \Pi, \pi: \mathcal{S} \mapsto \mathcal{A}, \quad \mathbb{E}[R(\pi_{\text{transfer}})] \neq \mathbb{E}[R(\pi_{\text{scratch}})]
+\end{equation}
+where $\mathbb{E}[R(\pi)]$ denotes the expected return of policy $\pi$.
 
 \begin{algorithm}[H]
-    \caption{A great RL algorithm.}
-    \label{alg:code}
+    \caption{Transfer Learning vs. Solo Training}
+    \label{alg:transfer}
     \begin{algorithmic}
-        \Require environment $e$, algorithm $A$
-        \Return policy $\pi$
-        \While TRUE
-            \State Train $A$ on $e$
+        \Require environment $e$, RL algorithm $A$
+        \State Train first agent $\pi_{\text{pre}}$ on $e$
+        \State Initialize second agents:
+        \Statex \quad \textbf{Option 1 (Transfer):} $\pi_{\text{transfer}} \leftarrow \pi_{\text{pre}}$
+        \Statex \quad \textbf{Option 2 (Solo):} randomly initialize $\pi_{\text{scratch}}$
+        \While{not converged}
+            \State Train $\pi_{\text{transfer}}$ on $e$ using $A$
+            \State Train $\pi_{\text{scratch}}$ on $e$ using $A$
         \EndWhile
+        \State Compute $\mathbb{E}[R(\pi_{\text{transfer}})]$ and $\mathbb{E}[R(\pi_{\text{scratch}})]$
+        \State \Return comparison of both performance values
     \end{algorithmic}
 \end{algorithm}
-
-\begin{equation}
-    \label{eq:pi}
-    \pi \in \Pi, \pi: \mathcal{S} \mapsto \mathcal{A}
-\end{equation}
 
 \section{Experiments}
 We want to know roughly what you are planning to show in terms of experiments. 
 
 \paragraph{Environments \& Metrics}
 ~\\
-ENV: Blackjack (Gymnasium - Toy Text)\\
-How good is the learned strategy and the win/loss rate.
+ENV: Blackjack-v1 (Gymnasium - Toy Text)\\
+Metrics: average win rate of the agent over multiple episodes, learning speed and convergence behavior.
 
-\paragraph{Experimental Scope} How many experiments are you running? Include seeds, hyperparameter optimization, different environments, ablations, etc. here.
+\paragraph{Experimental Scope}
+~\\
+How many experiments are you running? Include seeds, hyperparameter optimization, different environments, ablations, etc. here.
 
-\paragraph{Estimated Computational Load} How long will your experiments take and how will you run them? These do not need to be exact numbers, but we want to see that you know roughly how much time, memory and other resources you will need.
+\paragraph{Estimated Computational Load}
+~\\
+Training times vary by algorithm but are expected to be moderate due to the simplicity of the Blackjack environment. Each training run should take between several minutes to an hour on a standard CPU/GPU. Experiments will be automated via scripts and run on a local machine. Overall, the project is designed to be computationally feasible within a few days to a week.
 
 \section{Timeline}
-Please tell us how long you think it will take to accomplish all parts of your project. This includes:
+Estimated timeline for our project includes:
 \begin{itemize}
-    \item Research
-    \item Implementation
-    \item Experiments
-    \item Analysis
-    \item Reporting
+    \item Research: 2 days — Literature review on transfer learning and RL algorithms in Blackjack.
+    \item Implementation: 2 days — Implement training pipelines for the RL algorithms and transfer learning setups.
+    \item Experiments: 4 days — Run experiments across different algorithms, seeds, and settings.
+    \item Analysis: 2 days — Statistical evaluation of results, hypothesis testing, and interpretation.
+    \item Reporting: 1.5 days — Writing the final report, preparing visualizations, and presentation.
 \end{itemize}
 \end{document}
