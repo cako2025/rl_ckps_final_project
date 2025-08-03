@@ -1,6 +1,10 @@
 .DS_Store
+*.gz
+hpo/
+results/
 
-# --- .gitignore template from github
+##### from here on using the .gitignore template from github #####
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

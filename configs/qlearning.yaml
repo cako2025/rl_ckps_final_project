@@ -1,0 +1,10 @@
+epsilon_greedy:
+  gamma: 0.8558781688381
+  alpha: 0.0020794053992
+  epsilon_start: 0.9882297325067
+  epsilon_end: 0.0431852653595
+
+softmax:
+  gamma: 0.925
+  alpha: 0.01
+  temperature: 0.1414213562373
