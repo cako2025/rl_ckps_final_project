@@ -4,7 +4,7 @@ Title: Exploring Value Function Transfer Between On-Policy and Off-Policy Method
 Semester: Summer 2025.<br>
 Group: rl_ckps.<br>
 Members: Can Kocak and Paul Steinbrink.<br>
-Documents: [`checklist.pdf`](documents/checklist.pdf), [`proposal.pdf`](documents/proposal.pdf) and [`report.pdf`](documents/report.pdf).
+Documents: [`checklist.pdf`](documents/checklist.pdf), [`poster.pdf`](documents/poster.pdf), [`proposal.pdf`](documents/proposal.pdf) and [`report.pdf`](documents/report.pdf).
 
 ## Installation
 1. Clone this repository:
