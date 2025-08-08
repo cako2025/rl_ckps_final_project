@@ -162,7 +162,7 @@ class plotAgentResults():
             all_curves = []
 
             for (tl_alg, tl_exp, pre_alg, pre_exp), runs in self.tl_grouped.items():
-                if metric in runs[0]['results']['eval_results'][0]:
+                if len(runs[0]['results'].get('eval_results', {})) > 0 and metric in runs[0]['results']['eval_results'][0]:
                     tl_metric_all = [
                         np.array([entry[metric] for entry in run['results']['eval_results']]).flatten()
                         for run in runs
@@ -327,7 +327,7 @@ class plotAgentResults():
 
 
 if __name__ == "__main__":
-    file_path = "results/frozenlake_v1/slippery/20250728/05.pkl.gz"
+    file_path = "results/frozenlake_v1/<FOLDER_NAME>/05.pkl.gz"  # change file path as needed
     metrics = ['return_queue', 'length_queue', 'training_error']
 
     plot_instance = plotAgentResults(file_path=file_path, metrics=metrics, rolling_length=500)
