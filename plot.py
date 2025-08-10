@@ -328,6 +328,7 @@ class plotAgentResults():
 
 if __name__ == "__main__":
     file_path = "results/<FOLDER_NAME>/05.pkl.gz"  # change file path as needed
+    output_folder = "results"
     metrics = ['return_queue', 'length_queue', 'training_error']
     rolling_length = 500
 
@@ -342,4 +343,4 @@ if __name__ == "__main__":
 
             plot_instance.create_plot(agent=agent, exploration=exploration)
             plot_instance.set_plot_cfg(titles=titles, xlabels=xlabels, ylabels=ylabels, xscales=xscales)
-            plot_instance.save_plot(f'results/{agent}_{exploration}.svg')
+            plot_instance.save_plot(f'{output_folder}/{agent}_{exploration}.svg')
