@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import gymnasium as gym
 
 from typing import Any
 from collections import defaultdict
@@ -13,6 +14,7 @@ class BaseAgent:
     policy: EpsilonGreedyPolicy | SoftmaxPolicy
     q_table: defaultdict[Any, list[float]]
     seed: Any | None
+    env: gym.Env
 
     def set_seed(self) -> None:
         """
@@ -69,40 +71,22 @@ class BaseAgent:
         The agent acts using a fixed policy (no exploration) during evaluation.
         """
         env = create_env(size=self.env.unwrapped.nrow, seed=self.seed)
-
-        total_reward = 0
-        total_steps = 0
-        falls = 0
+        env = gym.wrappers.RecordEpisodeStatistics(env, buffer_length=n_episodes)
 
         for _ in range(n_episodes):
             state, _ = env.reset()
             done = False
-            ep_reward = 0
-            ep_steps = 0
-            fell = False
 
             while not done:
                 action = self.choose_action(state, evaluate=True)
                 state, reward, terminated, truncated, _ = env.step(action)
                 done = terminated or truncated
 
-                ep_reward += reward
-                ep_steps += 1
-
-                if reward == -100:
-                    fell = True
-
-            total_reward += ep_reward
-            total_steps += ep_steps
-            if fell:
-                falls += 1
-
         env.close()
 
         return {
-            "avg_reward": total_reward / n_episodes,
-            "avg_steps": total_steps / n_episodes,
-            "fall_rate": falls / n_episodes
+            "eval_return_queue": env.return_queue,
+            "eval_length_queue": env.length_queue
         }
 
     @abstractmethod
