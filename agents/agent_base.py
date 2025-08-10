@@ -70,8 +70,12 @@ class BaseAgent:
         -----
         The agent acts using a fixed policy (no exploration) during evaluation.
         """
-        env = create_env(size=self.env.unwrapped.nrow, seed=self.seed)
-        env = gym.wrappers.RecordEpisodeStatistics(env, buffer_length=n_episodes)
+        env = create_env(
+            size=self.env.unwrapped.nrow, seed=self.seed,
+            is_slippery=self.env.unwrapped.spec.kwargs['is_slippery']
+        )
+
+        rewards = []
 
         for _ in range(n_episodes):
             state, _ = env.reset()
@@ -81,13 +85,12 @@ class BaseAgent:
                 action = self.choose_action(state, evaluate=True)
                 state, reward, terminated, truncated, _ = env.step(action)
                 done = terminated or truncated
+            
+            rewards.append(reward)
 
         env.close()
 
-        return {
-            "eval_return_queue": env.return_queue,
-            "eval_length_queue": env.length_queue
-        }
+        return np.mean(rewards)
 
     @abstractmethod
     def train(self, episodes=1000, eval_steps=None) -> dict:

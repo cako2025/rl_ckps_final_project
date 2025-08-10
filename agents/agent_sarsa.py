@@ -137,7 +137,7 @@ class SARSAAgent(BaseAgent):
                 self.eval_results.append(self.evaluate())
 
         return {
-            "eval_results": self.eval_results,
+            "eval_rewards": self.eval_results,
             "training_error": self.training_error,
             "return_queue": self.env.return_queue,
             "length_queue": self.env.length_queue,

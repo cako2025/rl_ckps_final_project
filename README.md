@@ -18,6 +18,18 @@ Documents: [`checklist.pdf`](documents/checklist.pdf), [`poster.pdf`](documents/
 5. Install this repository:
     * ``python -m pip install -r requirements.txt``
 
+## Computational Information
+- MacBook Pro (Model Name: MacBook Pro (Model Identifier: MacBookPro15,4))
+- Processor: 1,4 GHz Quad-Core Intel Core i5
+- Memory (RAM): 8 GB 2133 MHz LPDDR3
+- GPU: Intel Iris Plus Graphics 645 1536 MB
+- macOS Version: 15.6
+- Python version: 3.11.1
+
+Runtime:
+Total runtime per experiment:
+- approximately 5.5 hours with experiment config as in base.yaml
+
 ## Configurations
 ### Base
 [`configs/base.yaml`](configs/base.yaml) defines the core experiment settings:
