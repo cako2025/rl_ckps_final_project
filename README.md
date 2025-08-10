@@ -11,7 +11,7 @@ Documents: [`checklist.pdf`](documents/checklist.pdf), [`poster.pdf`](documents/
     * ``git clone https://github.com/cako2025/rl_ckps_final_project.git``
 2. Install the uv package manager:
     * ``pip install uv``
-3. Create a new environment (with -seed it will put pip in the virtual environment):
+3. Create a new environment (with --seed it will put pip in the virtual environment):
     * ``uv venv --seed``
 4. Activate the new env:
     * ``source .venv/bin/activate``
