@@ -24,7 +24,8 @@ Documents: [`checklist.pdf`](documents/checklist.pdf), [`poster.pdf`](documents/
 - Memory (RAM): 8 GB 2133 MHz LPDDR3
 - GPU: Intel Iris Plus Graphics 645 1536 MB
 - macOS Version: 15.6
-- Python version: 3.11.1
+- Python Version: 3.11.1
+- Versions of Key Python Packages: listed in [`requirements.txt`](requirements.txt)
 
 Runtime:
 Total runtime per experiment:
