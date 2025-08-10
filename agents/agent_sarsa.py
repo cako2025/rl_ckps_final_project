@@ -92,7 +92,7 @@ class SARSAAgent(BaseAgent):
         -------
         dict
             Dictionary containing:
-            - "eval_results": List of evaluation results (if `eval_steps` is set).
+            - "eval_rewards": List of evaluation results (if `eval_steps` is set).
             - "training_error": List of average TD errors per episode.
             - "return_queue": Episode returns recorded by the environment.
             - "length_queue": Episode lengths recorded by the environment.

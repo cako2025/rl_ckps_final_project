@@ -63,8 +63,8 @@ class BaseAgent:
 
         Returns
         -------
-        dict
-            Dictionary with average reward, average steps per episode, and fall rate.
+        float
+            Mean reward.
 
         Notes
         -----
