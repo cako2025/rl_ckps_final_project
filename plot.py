@@ -327,10 +327,11 @@ class plotAgentResults():
 
 
 if __name__ == "__main__":
-    file_path = "results/frozenlake_v1/<FOLDER_NAME>/05.pkl.gz"  # change file path as needed
+    file_path = "results/<FOLDER_NAME>/05.pkl.gz"  # change file path as needed
     metrics = ['return_queue', 'length_queue', 'training_error']
+    rolling_length = 500
 
-    plot_instance = plotAgentResults(file_path=file_path, metrics=metrics, rolling_length=500)
+    plot_instance = plotAgentResults(file_path=file_path, metrics=metrics, rolling_length=rolling_length)
 
     for agent in ['qlearning', 'sarsa']:
         for exploration in ['epsilon_greedy', 'softmax']:
