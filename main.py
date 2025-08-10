@@ -93,7 +93,7 @@ def run_experiments_with_transfer() -> None:
             for seed in range(base_cfg.runs):
                 ##### pre training #####
                 log_message(f"[START] pre training {pre_algorithm} {pre_exploration} | split: {split} | episodes: {pretrain_episodes} | seed: {seed}")
-                env = create_env(seed=seed, size=base_cfg.env_kwargs.map_size, p=base_cfg.env_kwargs.p, is_slippery=base_cfg.env_kwargs.is_slippery)
+                env = create_env(seed=seed, size=base_cfg.map_size, p=base_cfg.p, is_slippery=base_cfg.is_slippery)
 
                 pre_agent, pre_result = run_agent(
                     agent_class=ALGORITHMS[pre_algorithm], env=env, episodes=pretrain_episodes,
@@ -109,7 +109,7 @@ def run_experiments_with_transfer() -> None:
                     tl_exploration = tl_combo.exploration
                     log_message(f"[START] transfer training {tl_algorithm} {tl_exploration} | split: {split} | episodes: {tl_episodes} | seed: {seed}")
 
-                    env = create_env(seed=seed, size=base_cfg.env_kwargs.map_size, p=base_cfg.env_kwargs.p, is_slippery=base_cfg.env_kwargs.is_slippery)
+                    env = create_env(seed=seed, size=base_cfg.map_size, p=base_cfg.p, is_slippery=base_cfg.is_slippery)
 
                     tl_agent, tl_result = run_agent(
                         agent_class=ALGORITHMS[tl_algorithm], env=env, episodes=tl_episodes, eval_steps=base_cfg.eval_steps,
@@ -135,7 +135,7 @@ def run_experiments_with_transfer() -> None:
                     log_message(f"[END] transfer training {tl_algorithm} {tl_exploration} | split: {split} | episodes: {tl_episodes} | seed: {seed}")
                 #################################################
 
-        save_results(results, '/'.join([base_cfg.output_path, base_cfg.env_name_lower, date]), split_str)
+        save_results(results, '/'.join([base_cfg.output_path, date]), split_str)
         log_message(f"Finished all runs for split: {split}")
     ####################################################################
 

@@ -1,9 +1,6 @@
-env_name: FrozenLake-v1
-env_name_lower: frozenlake_v1
-env_kwargs:
-  map_size: 7
-  p: 0.9
-  is_slippery: True
+map_size: 7
+p: 0.9
+is_slippery: True
 training_steps: 5000
 eval_steps: 5
 runs: 10
